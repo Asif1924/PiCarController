@@ -1,0 +1,25 @@
+keytool -genkey -v -keystore picarcontroller.keystore -alias PiCarController -keyalg RSA -keysize 2048 -validity 99999
+
+Enter keystore password: mc68b09e
+Re-enter new password: mc68b09e
+What is your first and last name?
+  [Unknown]:  Asif Alli
+What is the name of your organizational unit?
+  [Unknown]:  PiCarController
+What is the name of your organization?
+  [Unknown]:  Alli Consulting, Inc.
+What is the name of your City or Locality?
+  [Unknown]:  Mississauga
+What is the name of your State or Province?
+  [Unknown]:  Ontario
+What is the two-letter country code for this unit?
+  [Unknown]:  CA
+Is CN=Asif Alli, OU=CTFS, O=CTFS, L=Oakville, ST=Ontario, C=CA correct?
+  [no]:  yes
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA1withRSA) with a validity of 99,999 days
+        for: CN=Asif Alli, OU=OU, O=Alli Consulting, L=Mississauga, ST=Ontario, C=CA
+Enter key password for <PiCarController>
+        (RETURN if same as keystore password):
+Re-enter new password:
+[Storing picarcontroller.keystore]

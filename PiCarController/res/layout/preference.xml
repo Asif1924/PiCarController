@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/verticalScrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/hostname"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <EditText
+	        android:id="@+id/editText_hostname"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="textUri" >
+	
+	        <requestFocus />
+	    </EditText>
+	
+	    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/servicePortNum"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <EditText
+	        android:id="@+id/editText_servicePortNum"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" />
+	
+	    <TextView
+	        android:id="@+id/textViewStreamPortNum"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/streamPortNum"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <EditText
+	        android:id="@+id/editText_streamPortNum"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" />
+	        
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <TextView
+	            android:id="@+id/textView3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/width"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	        <EditText
+	            android:id="@+id/editText_width"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:ems="10"
+	            android:inputType="number" />
+	
+	        <TextView
+	            android:id="@+id/textView4"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/height"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	        <EditText
+	            android:id="@+id/editText_height"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:ems="10"
+	            android:inputType="number" />
+	    </LinearLayout>
+	
+	
+	
+	    <RadioGroup
+	        android:id="@+id/radioGroupStreamType"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	
+	    <RadioButton
+	        android:id="@+id/radioButtonMJPEG"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/streamTypeMJPEG" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButtonGStream"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/streamTypeGStream" />
+	    </RadioGroup>
+	
+	    <Button
+	        android:id="@+id/button1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:onClick="@string/onclick"
+	        android:text="@string/start" />
+	
+	</LinearLayout>
+</ScrollView>

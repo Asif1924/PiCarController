@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pi Car Controller</string>
+    <string name="hostname">Car WIFI IP address</string>
+    <string name="servicePortNum">Service Port Number</string>
+    <string name="streamPortNum">Stream Port Number</string>
+    <string name="start">Start</string>
+    <string name="defaultHostName">192.168.1.79</string>
+    <string name="defaultServicePortNum">9787</string>
+    <string name="defaultStreamPortNum">5000</string>
+    <string name="onclick">onClick</string>
+    <string name="preference">Preference</string>
+    <string name="height">Height</string>
+    <string name="width">Width</string>
+    <string name="defaultWidth">800</string>
+    <string name="defaultHeight">600</string>
+    <string name="streamTypeMJPEG">MJPEG</string>
+    <string name="streamTypeGStream">GStream</string>
+    <string name="defaultStreamType">GStream</string>
+</resources>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+              
+	<project name="PiCarController" basedir="." default="build.full.release" >
+              
+	<property file="local.properties" />      
+    <property file="ant.properties" />
+
+    <property environment="env"/>
+
+    <condition property="sdk.dir" value="${env.ANDROID_HOME}">
+        <isset property="env.ANDROID_HOME" />
+    </condition>
+    
+    <loadproperties srcFile="project.properties" />
+
+    <!-- quick check on sdk.dir -->
+    <fail
+            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through the ANDROID_HOME environment variable."
+            unless="sdk.dir"
+    />    
+    
+    <import file="custom_rules.xml" optional="true" />
+    
+    <import file="${sdk.dir}/tools/ant/build.xml" />
+    
+    <target name="build.full.debug" description="Clean and build full debug version" depends="-pre-clean,clean,debug"/>
+
+    <target name="build.full.release" description="Clean and build full release version" depends="set.apk.version,-pre-clean,clean,release"/>
+
+    <target name="build.full.release.install" description="Clean and build full release version" depends="build.full.release,install.release.version"/>    
+    
+	<target name="jenkins.build.full.release" description="Clean and build full release version" depends="set.apk.version,-pre-clean,clean,release"/>
+
+    <target name="build.full.release.copy" description="Clean and build full release version" depends="build.full.release,copy.release.apk.file.somewhere"/>
+
+    <target name="build.full.release.copy.install" description="Clean and build full release version" depends="build.full.release.copy,install.release.version"/>    
+    
+    <target name="jenkins.build.full.release.copy" description="Clean and build full release version" depends="jenkins.build.full.release,copy.release.apk.file.somewhere"/>
+
+	<target name="set.apk.version">
+		<echo message="Copying Original_AndroidManifest.xml to AndroidManifest.xml"/>
+		<copy overwrite="true" tofile="AndroidManifest.xml">
+            <fileset dir=".">
+                <include name="Original_AndroidManifest.xml"/>
+            </fileset>
+        </copy>		
+		<echo message="AndroidManifest.xml copied."/>
+		
+		<echo message="Modifying AndroidManifest.xml"/>
+		<echo message="Setting APK Version Code to ${apk.version.code}"/>
+		<replace file="AndroidManifest.xml" token='android:versionCode="1"' value='android:versionCode="${apk.version.code}"'/>
+		<echo message="Setting APK Version Name to ${version.major}.${version.minor}.${version.patch}.${version.buildEnv}.${apk.version.code}"/>
+		<replace file="AndroidManifest.xml" token='android:versionName="1.0"' value='android:versionName="${version.major}.${version.minor}.${version.patch}.${version.buildEnv}.${apk.version.code}"'/>
+		<echo message="APK Version Code and Name set."/>
+		<echo message="AndroidManifest.xml modified with new version"/>
+	</target>
+    
+	<target name="copy.release.apk.file.somewhere">
+		<tstamp>
+			<format property="date.time.stamp" pattern="MMddyyyy_hhmmaa" timezone="GMT-4"/>
+		</tstamp>
+
+		<echo message="Copying release version of APK file from ${build.dir}/production to ${copy.to.location.release}\${version.major}.${version.minor}.${version.patch}.${version.buildEnv}.${apk.version.code}_${date.time.stamp}_${copy.to.apk.filename}"/>
+		<!--
+		<delete includeemptydirs="true" quiet="true">
+    		<fileset dir="${copy.to.location.release}" includes="**/*"/>
+  		</delete>
+		//-->
+        <!--<copy overwrite="true" todir="${copy.to.location.release}">//-->
+				
+		<copy overwrite="true" tofile="${copy.to.location.release}/${version.major}.${version.minor}.${version.patch}.${version.buildEnv}.${apk.version.code}_${date.time.stamp}_${copy.to.apk.filename}">
+            <fileset dir="bin">
+                <include name="**/*release.apk"/>
+            </fileset>
+        </copy>
+		<echo message="${copy.to.location.release}\${version.major}.${version.minor}.${version.patch}.${version.buildEnv}.${apk.version.code}_${date.time.stamp}_${copy.to.apk.filename} copied."/>		
+	</target>	
+
+	<target name="install.release.version">
+		<echo message="Installing release version of APK file from bin/${ant.project.name}-release.apk to Device"/>
+				        
+        <exec executable="${adb}" failonerror="true">
+            <arg line="${adb.device.arg}" />
+            <arg value="install" />
+            <arg value="-r" />
+            <arg path="bin\${ant.project.name}-release.apk" />
+        </exec>
+		<echo message="bin/${ant.project.name}-release.apk installed on device."/>		
+	</target>	
+		
+		
+</project>
